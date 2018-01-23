@@ -5,20 +5,37 @@
        <ul>
          <li  @click="isShowAbout"></li>
          <li></li>
-         <li></li>
+         <li @click="showLogin">
+           <span v-show='!isLogin'></span>
+           <img :src="loginData.avatar_url" alt="" v-show="isLogin" @click="showDetailLogin">
+         </li>
        </ul>
      </div>
  </div>
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations, mapGetters } from "vuex";
 export default {
   data() {
     return {};
   },
+  created() {},
+  computed: {
+    ...mapGetters("home", ["isLogin", "loginData", "isShowMeau"])
+  },
   methods: {
-    ...mapMutations("home", ["isShowAbout"])
+    ...mapMutations("home", ["isShowAbout", "changeShowMeau"]),
+    showLogin() {
+      if (!this.isLogin) {
+        this.$router.push("/login");
+      } else {
+      }
+    },
+    showDetailLogin() {
+      // console.log(111);
+      this.changeShowMeau();
+    }
   }
 };
 </script>
@@ -52,7 +69,18 @@ export default {
       background: url("../../assets/tell.png");
     }
     li:nth-of-type(3) {
-      background: url("../../assets/login.png");
+      span {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        background: url("../../assets/login.png");
+      }
+      img {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
     }
   }
 }

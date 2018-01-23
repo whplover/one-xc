@@ -1,22 +1,21 @@
 <template>
- <div class="article">
+ <div class="subHeader">
      
-     <!-- <div class="title">
+     <div class="title">
          <div class="back" @click="backTo"></div>
-         <h3>主题主题主题主题</h3>
+         <h3>{{mainTitle}}</h3>
          <div class="home" @click="goHome"></div>
-     </div> -->
-      <subHeader :mainTitle = "title"></subHeader>
+     </div>
+
+
  </div>
 </template>
 
 <script>
-import subHeader from "@/components/common/subHeader.vue";
 export default {
+  props: ["mainTitle"],
   data() {
-    return {
-      title: "article详情页"
-    };
+    return {};
   },
   methods: {
     backTo() {
@@ -25,15 +24,12 @@ export default {
     goHome() {
       this.$router.push("/");
     }
-  },
-  components: {
-    subHeader
   }
 };
 </script>
 
 <style lang="scss">
-.article {
+.subHeader {
   .title {
     width: 100%;
     position: fixed;

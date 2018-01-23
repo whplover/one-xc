@@ -20,6 +20,7 @@
        <div class="toTop"></div>
      </div>
      <about v-if="isAbout"></about>
+     <detail-login v-if="isShowMeau"></detail-login>
  </div>
 </template>
 
@@ -28,19 +29,19 @@ import navBar from "@/components/home/navBar.vue";
 import liItem from "@/components/home/liItem.vue";
 import about from "@/components/home/about.vue";
 
+import detailLogin from "@/components/login/detailLogin.vue";
+
 import { mapState, mapActions, mapGetters } from "vuex";
 export default {
   data() {
-    return {
-      // itemData: ""
-    };
+    return {};
   },
   created() {
     this.getData("all", 1);
   },
   computed: {
     ...mapState("home", ["isAbout"]),
-    ...mapGetters("home", ["itemData"])
+    ...mapGetters("home", ["itemData", "isShowMeau"])
   },
   methods: {
     ...mapActions("home", ["getItemData"]),
@@ -55,7 +56,8 @@ export default {
   components: {
     navBar,
     liItem,
-    about
+    about,
+    detailLogin
   }
 };
 </script>
